@@ -1,5 +1,7 @@
 import os
 from moviepy.editor import ImageClip, AudioFileClip, concatenate_videoclips
+from datetime import datetime
+
 
 # Define file paths
 image_folder = r'C:\phase3\aivideo\trial\image\\'
@@ -17,7 +19,6 @@ duration_image = audio_duration / images_counter
 
 image_clips = [ImageClip(img, duration=duration_image) for img in image_files]  # Each image is displayed for 7 seconds
 
-
 # Concatenate the ImageClips
 final_clip = concatenate_videoclips(image_clips, method="compose")
 
@@ -28,10 +29,18 @@ final_clip = final_clip.set_audio(audio)
 final_clip = final_clip.set_duration(audio.duration)
 
 # Set the fps for the final_clip
-final_clip.fps = 5  # Adjust the value if needed
+final_clip.fps = 1  # Adjust the value if needed
+
+# Resize the video to 720p
+# final_clip = final_clip.resize(height=720)
+# final_clip = final_clip.resize(height=480)  # Adjust height as needed
+
+# Generate a timestamp
+timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
 # Output file path
-output_file = 'output_video_images.mp4'
+output_file = f'output_video_{timestamp}.mp4'
+
 
 # Write the video to a file
 final_clip.write_videofile(output_file, codec='libx264')
