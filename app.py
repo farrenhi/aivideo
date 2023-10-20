@@ -1,19 +1,29 @@
 import os
-from moviepy.editor import VideoFileClip, ImageSequenceClip, AudioFileClip
+from moviepy.editor import VideoFileClip, ImageSequenceClip
+from PIL import Image
+import PIL
+
+from moviepy.editor import *
 
 # Define file paths
 image_folder = r'C:\phase3\aivideo\trial\image\\'
-mp3_file = r'C:\phase3\aivideo\trial\audio\sample.mp3'
-
+mp3_file = r'C:\phase3\aivideo\trial\audio\classical.mp3'
 
 # Load the images and resize them to the same dimensions
 image_files = [os.path.join(image_folder, img) for img in sorted(os.listdir(image_folder)) if img.endswith(".jpg")]
 image_files_resized = []
 
+# Set a target size (adjust as needed)
+target_size = (1920, 1080)
 
-# Load the images
-image_files = sorted([f for f in os.listdir(image_folder) if f.endswith(".jpg")])
-clip = ImageSequenceClip([image_folder + img for img in image_files], fps=24)
+for img_path in image_files:
+    img = Image.open(img_path)
+    img_resized = img.resize(target_size, PIL.Image.Resampling.LANCZOS)
+    img_resized.save(img_path)
+    image_files_resized.append(img_path)
+
+# Create the video
+clip = ImageSequenceClip(image_files_resized, fps=1)
 
 # Load the audio
 audio = AudioFileClip(mp3_file)
@@ -23,8 +33,6 @@ clip = clip.set_audio(audio)
 
 # Set duration of the clip to match the audio duration
 clip = clip.set_duration(audio.duration)
-
-print('line 21')
 
 # Output file path
 output_file = 'output_video.mp4'

@@ -1,0 +1,1 @@
+# to grab content for generative AI tool
