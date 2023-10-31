@@ -1,3 +1,5 @@
+# image files are saved to local storage
+
 import os
 from moviepy.editor import ImageClip, AudioFileClip, concatenate_videoclips
 from datetime import datetime
