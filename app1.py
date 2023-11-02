@@ -6,8 +6,9 @@ from datetime import datetime
 
 
 # Define file paths
-image_folder = r'C:\phase3\aivideo\trial\image\\'
-mp3_file = r'C:\phase3\aivideo\trial\audio\classical.mp3'
+image_folder = 'trial/image/'
+mp3_file = 'trial/audio/classical.mp3'
+
 
 # Load the audio
 audio = AudioFileClip(mp3_file)
@@ -42,7 +43,6 @@ timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
 # Output file path
 output_file = f'output_video_{timestamp}.mp4'
-
 
 # Write the video to a file
 final_clip.write_videofile(output_file, codec='libx264')
