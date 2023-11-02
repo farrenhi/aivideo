@@ -86,8 +86,12 @@ def execute_query_delete(query, data=None):
         cursor.close()
         connection.close()
 
-
-
+def request_to_database(topic_prompt):
+    '''write user-input-topic-prompt into SQL database'''
+    query = "INSERT INTO request (prompt) VALUES (%s)"
+    data = (topic_prompt, )
+    execute_query_create(query, data)
+    return
 
 def generative_text_to_database(text_part, request_id):
     '''this function would write text into SQL database'''
@@ -105,7 +109,7 @@ def image_link_to_database(link, request_id):
     
 def grab_image(request_id):
     '''Given request_id, we should get image links'''
-    query = "SELECT web_link  FROM image WHERE request_id = (%s)"
+    query = "SELECT web_link FROM image WHERE request_id = (%s)"
     data = (request_id,)
     # print(execute_query_read(query, data))
     links = [item['web_link'] for item in execute_query_read(query, data)]

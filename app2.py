@@ -8,15 +8,31 @@ from model import *
 import requests
 import numpy as np
 from control import *
+from image import *
 
 ### Provided text
-request_id = 1
-text = """Abraham Lincoln, the 16th President of the United States, stands as an enduring symbol of leadership, integrity, and emancipation. Born in a log cabin in Kentucky, Lincoln rose from humble beginnings to become a towering figure in American history. His steadfast resolve during the Civil War preserved the Union and led to the abolition of slavery with the Emancipation Proclamation. Lincoln's eloquence, exemplified in the Gettysburg Address, resonates through the ages, emphasizing the ideals of equality and democracy. His compassionate nature and ability to bridge divides endeared him to the nation. Lincoln's tragic assassination in 1865 only cemented his legacy, leaving an indelible mark on the American psyche. He remains an inspiration for leaders worldwide, a testament to the power of moral conviction in times of great challenge. Lincoln's enduring influence continues to shape the course of the United States, reminding us that even in adversity, noble principles can prevail.
-"""
+topic_prompt = "snowwhite story in 150 words"
+request_id = 4
+text_splits = 3
+text = """
+Snow White, a princess with ebony hair and skin as fair as snow, lived in a castle with her wicked stepmother, the Queen. Jealous of Snow White's beauty, the Queen ordered her death. However, the kind-hearted huntsman spared her and she found shelter with seven lovable dwarfs in a cozy cottage in the woods.
 
-texts = split_text_into_prompts(text, 3)
+Meanwhile, the Queen's envy grew, leading her to concoct a poisonous apple. Disguised as an old hag, she tricked Snow White into taking a fateful bite. The princess fell into a deep slumber.
+
+Only true love's kiss could awaken her. A prince, enchanted by Snow White's beauty, arrived just in time. His kiss broke the spell, reviving her. The wicked Queen's evil reign came to an end, and Snow White and her prince lived happily ever after, a testament to the enduring power of love and kindness.
+"""
+###
+
+request_to_database(topic_prompt)
+
+texts = split_text_into_prompts(text, text_splits)
 for index, text in enumerate(texts):
     generative_text_to_database(text, request_id)
+
+# # AI: text to image
+# for text_part in texts:
+#     print(text_part)
+#     text_to_image(text_part, request_id)
 
 ### audio to be loaded from S3
 # Define file paths
@@ -27,9 +43,6 @@ audio = AudioFileClip(mp3_file)
 
 # Create ImageClips for each image
 # image_files = [os.path.join(image_folder, img) for img in sorted(os.listdir(image_folder)) if img.endswith(".jpg")]
-
-### to be changed on request_id
-request_id = 1
 
 image_urls = grab_image(request_id)
 
