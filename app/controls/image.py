@@ -3,9 +3,7 @@ from dotenv import load_dotenv
 import os
 load_dotenv()  # take environment variables from .env.
 from monsterapi import client
-from model import *
-
-# test_text = 'His compassionate nature and ability to bridge divides endeared him to the nation. Lincoln''s tragic assassination in 1865 only cemented his legacy, leaving an indelible mark on the American psyche.'
+from models.model import *
 
 def text_to_image(text_part, request_id):
     # Initialize the client with your API key
@@ -34,13 +32,9 @@ def text_to_image(text_part, request_id):
         return "error"
     else:
         generated_content = response.get('output')
-        print(response)
-        print('Generated content:', generated_content)
+        print("AI Picture generator:", response)
+        # print('Generated content:', generated_content)
         image_link_to_database(generated_content[0], request_id)
-
-
-
-### need to figure out request_id
     
 # data output format:
 # {'output': ['https://processed-model-result.s3.us-east-2.amazonaws.com/9ddb42e8-cf35-4d91-b6fd-e0235fbd59ca_0.png', 

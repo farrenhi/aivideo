@@ -1,6 +1,23 @@
+# version: '3'
+# services: 
+#   web: 
+#     build: .
+    
+
 version: '3'
 services: 
   web: 
-    build: .
-    
+    build: app
 
+    ports: 
+      - '5000:5000'
+
+    environment:
+      # FLASK_ENV: development
+      FLASK_DEBUG: "true"
+    
+    env_file:
+      - .env
+
+    volumes:
+      - ./app:/app

@@ -24,7 +24,8 @@ def execute_query_create(query, data=None):
     try:
         cursor.execute(query, data)
         connection.commit()
-        return True
+        # return True
+        return cursor.lastrowid
     except Exception as e:
         connection.rollback()
         print("Error:", e)
@@ -86,12 +87,16 @@ def execute_query_delete(query, data=None):
         cursor.close()
         connection.close()
 
+
+
 def request_to_database(topic_prompt):
     '''write user-input-topic-prompt into SQL database'''
     query = "INSERT INTO request (prompt) VALUES (%s)"
     data = (topic_prompt, )
-    execute_query_create(query, data)
-    return
+    # execute_query_create(query, data)
+    # return
+    last_inserted_id = execute_query_create(query, data)
+    return last_inserted_id
 
 def generative_text_to_database(text_part, request_id):
     '''this function would write text into SQL database'''

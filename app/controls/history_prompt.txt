@@ -1,0 +1,15 @@
+text = """
+Snow White is a young princess who is poisoned by her stepmother, the Evil Queen. She is saved by the seven dwarves and lives with them in the forest. When the Queen learns of Snow White's survival, she disguises herself as an old woman and gives Snow White a poisoned apple. Snow White eats the apple and falls into a deep sleep. The dwarves find her and place her in a glass coffin. A prince comes across the coffin and kisses Snow White, breaking the spell. The two are married and live happily ever after.
+"""
+
+text_backup_monsterapi="""
+Once upon a time, there was a beautiful snow white princess. She was the fairest of them all, and the King was madly in love with her. He wanted her to be his Queen, but there was one problem. No one could find an adequate answer to his question, 'what do you see when you look in the mirror'. She was frightened by the question, but there was no way to escape it. In a panic, she ran away from the castle and was never seen again. The snow white princess was a mystery, and the King never found the answer to his question.
+"""
+
+text_backup_chatgpt = """
+Snow White, a princess with ebony hair and skin as fair as snow, was adored by all but her jealous stepmother. 
+Enraged by Snow White's beauty, the queen ordered her death. 
+But the kind-hearted huntsman couldn't do it. 
+Snow White fled into the forest and found refuge with seven dwarfs. 
+The queen's wickedness was ultimately thwarted, and Snow White lived happily ever after.
+"""

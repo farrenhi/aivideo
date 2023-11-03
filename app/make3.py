@@ -1,14 +1,15 @@
 # image file are not saved to local storage
+# app3 test for EV2. Use local images
 from io import BytesIO
 import os
 from moviepy.editor import ImageClip, AudioFileClip, concatenate_videoclips
 from datetime import datetime
 from PIL import Image
-from model import *
+# from model import *
 import requests
 import numpy as np
-from control import *
-from image import *
+# from control import *
+# from image import *
 
 ### Provided text
 topic_prompt = "snowwhite story in 150 words"
@@ -23,11 +24,11 @@ Only true love's kiss could awaken her. A prince, enchanted by Snow White's beau
 """
 ###
 
-request_to_database(topic_prompt)
-
-texts = split_text_into_prompts(text, text_splits)
-for index, text in enumerate(texts):
-    generative_text_to_database(text, request_id)
+# save the prompt
+# request_to_database(topic_prompt)
+# texts = split_text_into_prompts(text, text_splits)
+# for index, text in enumerate(texts):
+#     generative_text_to_database(text, request_id)
 
 # # AI: text to image
 # for text_part in texts:
@@ -37,29 +38,36 @@ for index, text in enumerate(texts):
 ### audio to be loaded from S3
 # Define file paths
 # image_folder = r'C:\phase3\aivideo\trial\image\\'
-mp3_file = r'C:\phase3\aivideo\trial\audio\classical.mp3'
+# mp3_file = r'C:\phase3\aivideo\trial\audio\classical.mp3'
+image_folder = 'trial/image/'
+mp3_file = 'trial/audio/classical.mp3'
+
 # Load the audio
 audio = AudioFileClip(mp3_file)
 
 # Create ImageClips for each image
-# image_files = [os.path.join(image_folder, img) for img in sorted(os.listdir(image_folder)) if img.endswith(".jpg")]
+image_files = [os.path.join(image_folder, img) for img in sorted(os.listdir(image_folder)) if img.endswith(".png")]
 
-image_urls = grab_image(request_id)
+# image_urls = grab_image(request_id)
 
 audio_duration = audio.duration
-images_counter = len(image_urls)
+images_counter = 3
+images_counter = len(image_files)
 duration_image = audio_duration / images_counter
 
 # image_clips = [ImageClip(img, duration=duration_image) for img in image_files]  # Each image is displayed for 7 seconds
-image_clips = []
+# image_clips = []
 
-for i, img_url in enumerate(image_urls):
-    response = requests.get(img_url)
-    img_stream = BytesIO(response.content)
-    img = Image.open(img_stream)
-    img_array = np.array(img)  # Convert to NumPy array
-    img_clip = ImageClip(img_array, duration=duration_image)
-    image_clips.append(img_clip)
+image_clips = [ImageClip(img, duration=duration_image) for img in image_files]  # Each image is displayed for 7 seconds
+
+
+# for i, img_url in enumerate(image_urls):
+#     response = requests.get(img_url)
+#     img_stream = BytesIO(response.content)
+#     img = Image.open(img_stream)
+#     img_array = np.array(img)  # Convert to NumPy array
+#     img_clip = ImageClip(img_array, duration=duration_image)
+#     image_clips.append(img_clip)
 
 # Concatenate the ImageClips
 final_clip = concatenate_videoclips(image_clips, method="compose")
@@ -82,6 +90,7 @@ timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
 # Output file path
 output_file = f'output_video_{timestamp}.mp4'
+output_file = '/app/static/videos/output_video_{timestamp}.mp4'
 
 # Write the video to a file
 final_clip.write_videofile(output_file, codec='libx264')
