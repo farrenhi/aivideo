@@ -18,8 +18,16 @@ app = Flask(
 
 @app.route("/") # , methods=["GET"]
 def index():
-    # return render_template("index.html")
-    return "index page!"
+    return render_template("index.html")
+    # return "index page!"
+
+
+@app.route('/api/attractions', methods=['GET'])
+def get_attractions():
+    keyword = request.args.get('keyword', '')
+    print(keyword)
+    return jsonify(keyword)
+
 
 # # Initialize S3 client
 # s3 = boto3.client(

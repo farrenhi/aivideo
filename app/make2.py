@@ -15,7 +15,7 @@ from controls.speech import *
 ### future tasks: automation on this part
 user_input = input("Please enter a prompt: ")
 print("You entered:", user_input)
-prompt = user_input + 'Explain it in 75 words or less.'
+prompt = user_input + ' Explain it in 75 words or less.'
 text_splits = 3
 ###
 
@@ -25,8 +25,9 @@ request_id = request_to_database(prompt)
 text_from_gpt = prompt_to_text(prompt)
 
 texts = split_text_into_prompts(text_from_gpt, text_splits)
-for index, text in enumerate(texts):
-    generative_text_to_database(text, request_id)
+# for index, text in enumerate(texts):
+#     generative_text_to_database(text, request_id)
+generative_text_to_database(texts, request_id)
 
 ## break point
 user_input2 = input("Please check the prompt: ")
@@ -59,7 +60,6 @@ audio_duration = audio.duration
 
 image_urls = grab_image(request_id)
 images_counter = len(image_urls)
-
 duration_image = audio_duration / images_counter
 
 # image_clips = [ImageClip(img, duration=duration_image) for img in image_files]  # Each image is displayed for 7 seconds

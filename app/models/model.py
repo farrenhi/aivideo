@@ -34,6 +34,22 @@ def execute_query_create(query, data=None):
         cursor.close()
         connection.close()
 
+def execute_query_create_many(query, data=None):
+    connection = connection_pool.get_connection()
+    cursor = connection.cursor(dictionary=True)
+    try:
+        cursor.executemany(query, data)
+        connection.commit()
+        # return True
+        return cursor.lastrowid
+    except Exception as e:
+        connection.rollback()
+        print("Error:", e)
+        return False
+    finally:
+        cursor.close()
+        connection.close()
+
 def execute_query_read(query, data=None):
     # To request a connection from the pool, use its get_connection() method: 
     connection = connection_pool.get_connection() 
@@ -98,12 +114,17 @@ def request_to_database(topic_prompt):
     last_inserted_id = execute_query_create(query, data)
     return last_inserted_id
 
-def generative_text_to_database(text_part, request_id):
+# def generative_text_to_database(text_part, request_id):
+#     '''this function would write text into SQL database'''
+#     query = "INSERT INTO statement (text_part, request_id) VALUES (%s, %s)"
+#     data = (text_part, request_id)
+#     execute_query_create(query, data)
+
+def generative_text_to_database(texts, request_id):
     '''this function would write text into SQL database'''
     query = "INSERT INTO statement (text_part, request_id) VALUES (%s, %s)"
-    data = (text_part, request_id)
-    execute_query_create(query, data)
-
+    data = [(text, request_id) for text in texts]
+    execute_query_create_many(query, data)
 
 def image_link_to_database(link, request_id):
     '''this function would write image link into SQL database'''
