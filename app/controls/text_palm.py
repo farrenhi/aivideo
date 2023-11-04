@@ -16,10 +16,16 @@ def prompt_to_text(prompt):
         prompt=prompt,
         temperature=0,
         # The maximum length of the response
-        max_output_tokens=800,
+        max_output_tokens=200,
     )
 
     print("GPT answers:", completion.result)
+    
+    words_count = count_words(completion.result)
+    print("words count:", words_count)
+    
     return completion.result
 
-
+def count_words(statement):
+    words = statement.split()
+    return len(words)

@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // if (nextPage === null) return;
         console.log("clicked!");
         userInput = searchInput.value;
+        document.getElementById('video').style.display = 'none';
+        let sourceElement = document.getElementById('video_src');
+        console.log(sourceElement);
+        let videoElement = document.getElementById('video');
         const url = `/api/attractions?keyword=${userInput}`;
 
         fetch(url)
@@ -20,9 +24,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 // dataContainer.innerHTML = '';
                 
                 // Process and display new data
-                let attractions = data.data;
-                console.log(attractions)
-
+                document.getElementById('video').style.display = 'block';
+                
+                sourceElement.src = '/' + data.data;
+                videoElement.load(); // Reload the video element
+                videoElement.play(); // Play the video
+                console.log(sourceElement)
                 // nextPage = 0
 
                 // get_data_12(attractions); // Reuse the existing function

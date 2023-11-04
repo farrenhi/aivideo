@@ -9,6 +9,7 @@ from werkzeug.utils import secure_filename
 
 ### Connection Pool
 import mysql.connector.pooling
+from make2 import *
 
 app = Flask(
     __name__,
@@ -24,9 +25,14 @@ def index():
 
 @app.route('/api/attractions', methods=['GET'])
 def get_attractions():
-    keyword = request.args.get('keyword', '')
-    print(keyword)
-    return jsonify(keyword)
+    prompt = request.args.get('keyword', '')
+    print(prompt)
+    
+    video_filename = make_video(prompt)
+    response = {
+    "data": video_filename
+    }
+    return jsonify(response)
 
 
 # # Initialize S3 client

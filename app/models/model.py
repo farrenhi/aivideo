@@ -140,3 +140,10 @@ def grab_image(request_id):
     # print(execute_query_read(query, data))
     links = [item['web_link'] for item in execute_query_read(query, data)]
     return links
+
+def save_video_filename_database(filename, request_id):
+    '''write video filename to database'''
+    query = "INSERT INTO video (filename, request_id) VALUES (%s, %s)"
+    data = (filename, request_id)
+    execute_query_create(query, data)
+    
