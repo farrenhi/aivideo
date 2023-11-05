@@ -19,7 +19,7 @@ def prompt_to_text(prompt):
         max_output_tokens=200,
     )
 
-    print("GPT answers:", completion.result)
+    print("GPT:", completion.result)
     
     words_count = count_words(completion.result)
     print("words count:", words_count)

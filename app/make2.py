@@ -13,7 +13,7 @@ from controls.text_palm import *
 from controls.speech import *
 
 def make_video(prompt):
-    prompt = prompt + ' and explain within 75 words.'
+    prompt = prompt + ' and explain between 75 to 100 words.'
     
     print("modified_prompt:", prompt)
     
@@ -37,10 +37,9 @@ def make_video(prompt):
 
     generative_text_to_database(texts, request_id)
 
-    # break point
+    ### break point
     user_input2 = input("Please check the prompt: ")
     print("You entered:", user_input2)
-    #
 
     # AI: text to image
     for text_part in texts:

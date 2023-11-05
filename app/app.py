@@ -29,9 +29,11 @@ def get_attractions():
     print(prompt)
     
     video_filename = make_video(prompt)
+    
     response = {
     "data": video_filename
     }
+    
     return jsonify(response)
 
 

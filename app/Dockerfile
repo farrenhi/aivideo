@@ -33,6 +33,6 @@ COPY . .
 
 # COPY .env /app/  # Copy the .env file
 
-EXPOSE 5000
+EXPOSE 80
 
 CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]

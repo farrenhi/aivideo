@@ -8,11 +8,23 @@ import mysql.connector.pooling
 # local parameters
 
 
-db_config = {'host': os.getenv('host'), 
+db_config = {
+            'host': os.getenv('host'), 
+            # 'host': 'host.docker.internal', 
             'port': os.getenv('port'), 
             'user': os.getenv('user'), 
+            
             'password': os.getenv('password'), 
-            'database': os.getenv('database')}
+            'database': os.getenv('database')
+            }
+
+try:
+    connection = mysql.connector.connect(**db_config)
+    print("Successfully connected to MySQL server")
+except Exception as e:
+    print(f"Error connecting to MySQL server: {e}")
+
+# print(db_config['database'])
 
 # Create a connection pool
 connection_pool = mysql.connector.pooling.MySQLConnectionPool(pool_name="mypool", pool_size=5, **db_config)
