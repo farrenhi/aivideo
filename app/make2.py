@@ -92,12 +92,15 @@ def make_video(prompt):
 
     # Generate a timestamp
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    
+    video_filename = f'video_{timestamp}.mp4'
 
     # Output file path
-    output_file = f'static/videos/video_{timestamp}.mp4'
+    output_file_path = f'static/videos/{video_filename}'
 
-    save_video_filename_database(output_file, request_id)
+    save_video_filename_database(video_filename, request_id)
 
     # Write the video to a file
-    final_clip.write_videofile(output_file, codec='libx264')
-    return output_file
+    final_clip.write_videofile(video_filename, codec='libx264')
+    
+    return output_file_path, video_filename, request_id

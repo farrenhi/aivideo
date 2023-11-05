@@ -1,21 +1,26 @@
 from dotenv import load_dotenv
 import os
 load_dotenv()  # take environment variables from .env.
-
-# Connection Pool
 import mysql.connector.pooling
 
-# local parameters
-
+# db_config = {
+#             'host': os.getenv('host'), 
+#             # 'host': 'host.docker.internal', 
+#             'port': os.getenv('port'), 
+#             'user': os.getenv('user'), 
+            
+#             'password': os.getenv('password'), 
+#             'database': os.getenv('database')
+#             }
 
 db_config = {
-            'host': os.getenv('host'), 
+            'host': os.getenv('rds_host'), 
             # 'host': 'host.docker.internal', 
-            'port': os.getenv('port'), 
-            'user': os.getenv('user'), 
+            'port': os.getenv('rds_port'), 
+            'user': os.getenv('rds_user'), 
             
-            'password': os.getenv('password'), 
-            'database': os.getenv('database')
+            'password': os.getenv('rds_password'), 
+            'database': os.getenv('rds_database')
             }
 
 try:
@@ -115,8 +120,6 @@ def execute_query_delete(query, data=None):
         cursor.close()
         connection.close()
 
-
-
 def request_to_database(topic_prompt):
     '''write user-input-topic-prompt into SQL database'''
     query = "INSERT INTO request (prompt) VALUES (%s)"
@@ -144,7 +147,6 @@ def image_link_to_database(link, request_id):
     data = (link, request_id)
     execute_query_create(query, data)
     
-    
 def grab_image(request_id):
     '''Given request_id, we should get image links'''
     query = "SELECT web_link FROM image WHERE request_id = (%s)"
@@ -158,4 +160,12 @@ def save_video_filename_database(filename, request_id):
     query = "INSERT INTO video (filename, request_id) VALUES (%s, %s)"
     data = (filename, request_id)
     execute_query_create(query, data)
-    
+
+def generate_cloudfront_link(distribution_domain, object_key):
+    return f"https://{distribution_domain}/{object_key}"
+
+def videolink_to_sql(cloudfront_link, request_id):
+    '''write video cloudfront_link to database'''
+    query = "INSERT INTO cloudfront (cloudfront_link, request_id) VALUES (%s, %s)"
+    data = (cloudfront_link, request_id)
+    execute_query_create(query, data)
