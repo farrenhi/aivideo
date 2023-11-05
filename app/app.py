@@ -23,7 +23,6 @@ def index():
     return render_template("index.html")
     # return "index page!"
 
-
 @app.route('/api/attractions', methods=['GET'])
 def get_attractions():
     prompt = request.args.get('keyword', '')
@@ -35,7 +34,8 @@ def get_attractions():
   
     ### to be changed to cloudfront_link
     response = {
-    "data": output_file_path
+        "data": cloudfront_link,
+        "data_backup": output_file_path,
     }
     
     return jsonify(response)

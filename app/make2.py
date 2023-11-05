@@ -37,9 +37,9 @@ def make_video(prompt):
 
     generative_text_to_database(texts, request_id)
 
-    ### break point
-    user_input2 = input("Please check the prompt: ")
-    print("You entered:", user_input2)
+    # ### break point
+    # user_input2 = input("Please check the prompt: ")
+    # print("You entered:", user_input2)
 
     # AI: text to image
     for text_part in texts:
@@ -101,6 +101,6 @@ def make_video(prompt):
     save_video_filename_database(video_filename, request_id)
 
     # Write the video to a file
-    final_clip.write_videofile(video_filename, codec='libx264')
+    final_clip.write_videofile(output_file_path, codec='libx264')
     
     return output_file_path, video_filename, request_id

@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Process and display new data
                 document.getElementById('video').style.display = 'block';
                 
-                sourceElement.src = '/' + data.data;
+                sourceElement.src = data.data; // if local storage: '/' + data.data;
                 videoElement.load(); // Reload the video element
                 videoElement.play(); // Play the video
                 console.log(sourceElement)

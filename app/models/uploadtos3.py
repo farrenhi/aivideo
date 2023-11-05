@@ -19,7 +19,7 @@ def upload_to_s3_and_get_cloudfront_link(local_file_path, filename, request_id):
 
     # Generate CloudFront link
     cloudfront_link = generate_cloudfront_link(cloudfront_distribution_domain, filename)
-    videolink_to_sql(request_id, cloudfront_link) 
+    videolink_to_sql(cloudfront_link, request_id) 
     
     return cloudfront_link
 

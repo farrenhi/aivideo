@@ -1,4 +1,6 @@
 .env
 *.mp4
 
+.mp4
+
 *.aws
