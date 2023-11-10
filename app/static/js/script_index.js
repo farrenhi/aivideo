@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('search-input');
+    const code_input = document.getElementById('code');
     const searchButton = document.querySelector('.search-button');
     // const dataContainer = document.getElementById('part2_twelve');
 
@@ -10,12 +11,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function performSearch() {
         // if (nextPage === null) return;
         console.log("clicked!");
+        user_code_input = code_input.value;
         userInput = searchInput.value;
         document.getElementById('video').style.display = 'none';
         let sourceElement = document.getElementById('video_src');
         console.log(sourceElement);
         let videoElement = document.getElementById('video');
-        const url = `/api/attractions?keyword=${userInput}`;
+        const url = `/api/attractions?keyword=${userInput}&code=${user_code_input}`;
 
         fetch(url)
             .then(response => response.json())

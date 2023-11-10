@@ -6,6 +6,7 @@ load_dotenv()  # take environment variables from .env.
 import boto3
 from datetime import datetime
 from werkzeug.utils import secure_filename
+import time
 
 ### Connection Pool
 import mysql.connector.pooling
@@ -25,14 +26,24 @@ def index():
 
 @app.route('/api/attractions', methods=['GET'])
 def get_attractions():
+    code = request.args.get('code', '')
+    if code != os.getenv('website_code'):
+        print("entered code:", code)
+        return jsonify("error code!")
+    
     prompt = request.args.get('keyword', '')
+    prompt = prompt + ' and explain between 75 to 100 words.'
     print(prompt)
     
-    output_file_path, video_filename, request_id = make_video(prompt)
+    ### comment out when testing
+    # output_file_path, video_filename, request_id = make_video(prompt)
+    # cloudfront_link = upload_to_s3_and_get_cloudfront_link(output_file_path, video_filename, request_id)
+    ##
     
-    cloudfront_link = upload_to_s3_and_get_cloudfront_link(output_file_path, video_filename, request_id)
-  
-    ### to be changed to cloudfront_link
+    cloudfront_link = "https://login-aws-docker.s3.us-west-2.amazonaws.com/video_20231106_132728.mp4"
+
+    time.sleep(3)
+    
     response = {
         "data": cloudfront_link,
         "data_backup": output_file_path,

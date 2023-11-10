@@ -13,7 +13,7 @@ from controls.text_palm import *
 from controls.speech import *
 
 def make_video(prompt):
-    prompt = prompt + ' and explain between 75 to 100 words.'
+    
     
     print("modified_prompt:", prompt)
     

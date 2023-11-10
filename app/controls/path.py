@@ -10,6 +10,6 @@ def save_text_to_file(text, file_path):
         print(f'Error: {e}')
 
 # Example usage:
-text = "This is some example text."
-file_path = "example.txt"
-save_text_to_file(text, file_path)
+# text = "This is some example text."
+# file_path = "example.txt"
+# save_text_to_file(text, file_path)

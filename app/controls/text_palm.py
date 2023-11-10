@@ -9,7 +9,7 @@ def prompt_to_text(prompt):
     palm.configure(api_key=os.getenv('palm_api_key'))
     models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
     model = models[0].name
-    # print(model)
+    print(model)
 
     completion = palm.generate_text(
         model=model,
@@ -29,3 +29,5 @@ def prompt_to_text(prompt):
 def count_words(statement):
     words = statement.split()
     return len(words)
+
+# prompt_to_text("a story of snow white")
