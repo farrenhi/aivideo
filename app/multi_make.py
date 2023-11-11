@@ -1,4 +1,5 @@
-# image url saved to MySQL database
+import threading
+import time
 from io import BytesIO
 import os
 from moviepy.editor import ImageClip, AudioFileClip, concatenate_videoclips
@@ -12,72 +13,79 @@ from controls.image import *
 from controls.text_palm import *
 from controls.speech import *
 
-def make_video(prompt):
-    
-    
-    print("modified_prompt:", prompt)
-    
+# def image_generator(texts, request_id):
+#     # AI: text to image
+#     for index, text_part in enumerate(texts):
+#         print("image generator:", index)
+#         text_to_image(text_part, request_id)
+   
+
+def run_threads(prompt):
     ### future tasks: automation on this part
     text_splits = 3
     ###
-
-    # save the topic_prompt
+    
+    # get request_id and response from GPT
+    ### future task: should be processed at the same time
     request_id = request_to_database(prompt)
     text_from_gpt = prompt_to_text(prompt)
     
-#     text_from_gpt = """
-# Snow White, a princess with ebony hair and skin as fair as snow, was adored by all but her jealous stepmother. 
-# Enraged by Snow White's beauty, the queen ordered her death. 
-# But the kind-hearted huntsman couldn't do it. 
-# Snow White fled into the forest and found refuge with seven dwarfs. 
-# The queen's wickedness was ultimately thwarted, and Snow White lived happily ever after.
-# """
-
+    # split GPT's response and save it into database
     texts = split_text_into_prompts(text_from_gpt, text_splits)
-
     generative_text_to_database(texts, request_id)
+    
+    # save a list as dict of image links (no need to go to S3)
+    image_urls_dict = {}
+    
+    # Create thread objects
+    thread1 = threading.Thread(target=text_to_speech, args=(text_from_gpt, request_id))
+    # thread2 = threading.Thread(target=image_generator, args=(texts, request_id))
+    thread2 = threading.Thread(target=text_to_image, args=(texts[0], 0, image_urls_dict, request_id))
+    thread3 = threading.Thread(target=text_to_image, args=(texts[1], 1, image_urls_dict, request_id))
+    thread4 = threading.Thread(target=text_to_image, args=(texts[2], 2, image_urls_dict, request_id))
+    
+    # Start all threads
+    thread2.start()
+    thread3.start()
+    thread4.start()
+    
+    thread1.start()
 
+    # Wait for all threads to complete
+    thread1.join()
+    thread2.join()
+    thread3.join()
+    thread4.join()
 
-    ### break point
-    user_input2 = input("Please check the prompt: ")
-    print("You entered:", user_input2)
-
-
-    # ### break point
-    # user_input2 = input("Please check the prompt: ")
-    # print("You entered:", user_input2)
-
-    # AI: text to image
-    # for text_part in texts:
-    #     text_to_image(text_part, request_id)
-
-    request_id = 76
-
-    ### make narrative audio
-    # text_to_speech(text_from_gpt, request_id)
-
-    ### audio to be loaded from S3
+    # Continue with the main program after both threads are done
+    print("Audio and images are fetched. Continue with the main program.")
+    
+    ### audio to be uploaded to S3
     # Define file paths
     # image_folder = r'C:\phase3\aivideo\trial\image\\'
     mp3_file = f'static/audio/{request_id}.mp3'
     ###
-
+    
     # Load the audio
     audio = AudioFileClip(mp3_file)
     audio_duration = audio.duration
-
-    # Create ImageClips for each image
-    # image_files = [os.path.join(image_folder, img) for img in sorted(os.listdir(image_folder)) if img.endswith(".jpg")]
-
-    image_urls = grab_image(request_id)
-    print(image_urls)
+    
+    dict_to_array = []
+    # for index in range(len(image_urls_dict.keys())):
+    for key in image_urls_dict.keys():
+        dict_to_array.append(image_urls_dict[key])
+    
+    image_urls = dict_to_array
+    # image_urls = grab_image(request_id)
+    # print(image_urls)
+    # data_image_urls_example = [
+    #     'https://processed-model-result.s3.us-east-2.amazonaws.com/4af78ff7-6c86-4cc5-ac51-6933e2a93cb0_0.png', 
+    #     'https://processed-model-result.s3.us-east-2.amazonaws.com/51a9995b-fc27-4757-b235-aff1b5bc74fc_0.png', 
+    #     'https://processed-model-result.s3.us-east-2.amazonaws.com/d810e1f4-75b6-46ef-b1b6-19e10e8ab9fc_0.png'
+    #     ]
+    
     images_counter = len(image_urls)
     duration_image = audio_duration / images_counter
-
-    ### break point
-    user_input2 = input("Please check the prompt: ")
-    print("You entered:", user_input2)
-
 
     # image_clips = [ImageClip(img, duration=duration_image) for img in image_files]  # Each image is displayed for 7 seconds
     image_clips = []
@@ -116,3 +124,6 @@ def make_video(prompt):
     final_clip.write_videofile(output_file_path, codec='libx264')
     
     return output_file_path, video_filename, request_id
+
+if __name__ == "__main__":
+    run_threads()

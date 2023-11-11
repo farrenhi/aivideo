@@ -9,31 +9,47 @@
 
 <body>
     <div class="main">
-    <div class="welcome-banner">
-        <div class="slogan_flex">
-            <div class="slogan">
-                <div class="welcome_text1 slogantitle_h1_bold"> One Message. One Video. </div>
-                <!-- <div class="welcome_text2 body_body_bold"> One click to get one video clip.</div> -->
-                <!-- class="modal_input body_body_medium" -->
-                <div class="search_bar">
-                    <input type="text" placeholder="A message about you video clip" class="search-input body_body_bold" id="search-input">
-                    <input type="password" id="code" placeholder="code" class="code_box" required>
-                    <div class="search-button">
-                        <img src="/static/images/search_icon.png" alt="Search Icon">
+
+        <div class="welcome-banner">
+            <div class="slogan_flex">
+                <div class="slogan">
+                    <div class="welcome_text1 slogantitle_h1_bold"> One Message. One Video. </div>
+                    <!-- <div class="welcome_text2 body_body_bold"> One click to get one video clip.</div> -->
+                    <!-- class="modal_input body_body_medium" -->
+                    <div class="search_bar">
+                        <input type="text" placeholder="A message about you video clip" class="search-input body_body_bold" id="search-input">
+                        <input type="password" id="code" placeholder="code" class="code_box" required>
+                        <div class="search-button">
+                            <img src="/static/images/make_movie2.png" alt="Search Icon">
+                        </div>
                     </div>
+                    
                 </div>
-                
             </div>
         </div>
+
+        <div class="video_box">
+            <div id="loading-spinner" class="hidden"></div>
+
+            <video class="video" id="video"  width="1280" height="720" controls>
+                <source id="video_src" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="link_box" id="link_box">
+            <div class="video_link">
+
+            </div>
+            <div class="video_download">
+                <a id="downloadBtn"  download="video.mp4"> Download Video </a>
+            </div>
+
+        </div>
+
     </div>
 
-    <video class="video" id="video"  width="1280" height="720" controls>
-        <source id="video_src" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    </div>
-
-    <script src="/static/js/script_index.js"></script>
+    <script src="/static/js/index2.js"></script>
 
 </body>    
 </html>

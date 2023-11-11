@@ -141,10 +141,10 @@ def generative_text_to_database(texts, request_id):
     data = [(text, request_id) for text in texts]
     execute_query_create_many(query, data)
 
-def image_link_to_database(link, request_id):
+def image_link_to_database(link, story_flow_number, request_id):
     '''this function would write image link into SQL database'''
-    query = "INSERT INTO image (web_link, request_id) VALUES (%s, %s)"
-    data = (link, request_id)
+    query = "INSERT INTO image (web_link, story_flow_number, request_id) VALUES (%s, %s, %s)"
+    data = (link, story_flow_number, request_id)
     execute_query_create(query, data)
     
 def grab_image(request_id):

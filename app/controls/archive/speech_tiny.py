@@ -7,8 +7,7 @@ aws_secret_access_key=os.getenv('polly_secret_access_key')
 
 
 polly_client = boto3.Session(
-    aws_access_key_id=,                     
-    aws_secret_access_key=,
+
     region_name='us-west-2').client('polly')
 
 

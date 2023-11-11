@@ -2,53 +2,38 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('search-input');
     const code_input = document.getElementById('code');
     const searchButton = document.querySelector('.search-button');
-    // const dataContainer = document.getElementById('part2_twelve');
 
-    // searchInput.addEventListener('input', performSearch);
+    const videoElement = document.getElementById('video');
+    const linkBoxElement = document.getElementById('link_box');
+    // const linkBoxElement = document.querySelector('.link_box');
+
+    const sourceElement = document.getElementById('video_src');
+    const download_button = document.getElementById('downloadBtn');
     
     searchButton.addEventListener('click', performSearch);
     
     function performSearch() {
-        // if (nextPage === null) return;
         console.log("clicked!");
         user_code_input = code_input.value;
         userInput = searchInput.value;
-        document.getElementById('video').style.display = 'none';
-        let sourceElement = document.getElementById('video_src');
-        console.log(sourceElement);
-        let videoElement = document.getElementById('video');
+
         const url = `/api/attractions?keyword=${userInput}&code=${user_code_input}`;
 
         fetch(url)
             .then(response => response.json())
-            .then(data => {
-                // Clear existing data
-                // dataContainer.innerHTML = '';
-                
+            .then(data => {               
                 // Process and display new data
-                document.getElementById('video').style.display = 'block';
-                
                 sourceElement.src = data.data; // if local storage: '/' + data.data;
+                download_button.href = data.data;
+
+                videoElement.style.display = 'block';
+                linkBoxElement.style.display = 'block';
+                
+                linkBoxElement.load();
                 videoElement.load(); // Reload the video element
                 videoElement.play(); // Play the video
-                console.log(sourceElement)
-                // nextPage = 0
-
-                // get_data_12(attractions); // Reuse the existing function
+  
             })
             .catch(error => console.error('Error:', error));
     }
-
-    // function performSearch() {
-    //     userInput = searchInput.value;
-    //     if (userInput !== userInput_previous) {
-    //         nextPage = 0
-    //     } 
-
-    //     if (nextPage === null) return;
-    //     dataContainer.innerHTML = '';
-    //     userInput_previous = userInput;
-    //     get_data_12();
-        
-    // }
 });
