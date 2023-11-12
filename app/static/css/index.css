@@ -16,19 +16,22 @@
 
 .link_box {
     display: none;
+    justify-content: center;
     margin-top: 10px;
-    height: 40px;
+    height: 46px;
 }
 
+.video_link{
+    color: var(--secondary3);
+}
 #downloadBtn {
     display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 15px 15px;
     text-align: center;
     text-decoration: none;
-    background-color: #4CAF50;
-    color: white;
-    border: 1px solid #4CAF50;
+    background-color: var(--secondary2);
+    color: var(--secondary4);
+    /* border: 1px solid #4CAF50; */
     border-radius: 5px;
     cursor: pointer;
 }
@@ -57,6 +60,9 @@
 
 .code_box {
     width: 50px;
+    border: none;
+    border-left: 1px solid var(--secondary2);
+    color: var(--secondary2);
 }
 
 body {
@@ -275,7 +281,7 @@ font-weight: bold;
     border: none;
     padding: 15px; /* Add padding for spacing */
     width: 350px; /* Width of the input box */
-    box-shadow: 0px 0px 20px 0px #ABC; 
+    /* box-shadow: 0px 0px 20px 0px #ABC;  */
     color: var(--secondary2);
 }
 

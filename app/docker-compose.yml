@@ -1,0 +1,20 @@
+version: '3'
+services: 
+  web: 
+    build: .
+    image: aivideo-compose/compose
+    container_name: aivideo-compose-container
+
+    ports: 
+      - '3002:5000'
+
+    environment:
+      # FLASK_ENV: development
+      FLASK_DEBUG: "true"
+    
+    env_file:
+      - .env
+
+    # volumes:
+      # - ./app:/app
+      # - /app:/app

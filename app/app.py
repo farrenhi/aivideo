@@ -41,13 +41,12 @@ async def get_attractions():
     ### comment out when testing
     # output_file_path, video_filename, request_id = make_video(prompt)
     
-    # output_file_path, video_filename, request_id = run_threads(prompt)
-    # cloudfront_link = upload_to_s3_and_get_cloudfront_link(output_file_path, video_filename, request_id)
+    output_file_path, video_filename, request_id = run_threads(prompt)
+    cloudfront_link = upload_to_s3_and_get_cloudfront_link(output_file_path, video_filename, request_id)
     ###
     
-    await asyncio.sleep(3)
-    
-    cloudfront_link = "https://login-aws-docker.s3.us-west-2.amazonaws.com/video_20231106_132728.mp4"
+    # await asyncio.sleep(3)
+    # cloudfront_link = "https://login-aws-docker.s3.us-west-2.amazonaws.com/video_20231106_132728.mp4"
    
     response = {
         "data": cloudfront_link,
@@ -83,4 +82,4 @@ async def get_attractions():
 #     return jsonify(response)
 
 # run server
-app.run(host="0.0.0.0", port=3000, debug=True)
+app.run(host="0.0.0.0", port=5000, debug=True)

@@ -4,8 +4,8 @@ load_dotenv()  # take environment variables from .env.
 import mysql.connector.pooling
 
 db_config = {
-            'host': os.getenv('host'), 
-            # 'host': 'host.docker.internal', 
+            # 'host': os.getenv('host'), 
+            'host': 'host.docker.internal', 
             'port': os.getenv('port'), 
             'user': os.getenv('user'), 
             
@@ -15,7 +15,6 @@ db_config = {
 
 # db_config = {
 #             'host': os.getenv('rds_host'), 
-#             # 'host': 'host.docker.internal', 
 #             'port': os.getenv('rds_port'), 
 #             'user': os.getenv('rds_user'), 
             

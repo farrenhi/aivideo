@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title> A Movie </title>
+    <title> AutoVideo </title>
     <link rel="stylesheet" type="text/css" href="/static/css/index.css" />
 </head>
 
@@ -13,12 +13,12 @@
         <div class="welcome-banner">
             <div class="slogan_flex">
                 <div class="slogan">
-                    <div class="welcome_text1 slogantitle_h1_bold"> One Message. One Video. </div>
+                    <div class="welcome_text1 slogantitle_h1_bold"> AutoVideo </div>
                     <!-- <div class="welcome_text2 body_body_bold"> One click to get one video clip.</div> -->
                     <!-- class="modal_input body_body_medium" -->
                     <div class="search_bar">
                         <input type="text" placeholder="A message about you video clip" class="search-input body_body_bold" id="search-input">
-                        <input type="password" id="code" placeholder="code" class="code_box" required>
+                        <input type="password" id="code" placeholder="code" class="code_box body_body_bold" required>
                         <div class="search-button">
                             <img src="/static/images/make_movie2.png" alt="Search Icon">
                         </div>
@@ -38,11 +38,13 @@
         </div>
 
         <div class="link_box" id="link_box">
-            <div class="video_link">
 
-            </div>
+            <!-- <div class="video_link">
+                <p id="urlDisplay"></p>
+            </div> -->
+
             <div class="video_download">
-                <a id="downloadBtn"  download="video.mp4"> Download Video </a>
+                <a id="downloadBtn" class="body_body_bold"  download="video.mp4"> Download Video </a>
             </div>
 
         </div>

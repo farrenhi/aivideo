@@ -4,6 +4,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchButton = document.querySelector('.search-button');
     const loadingSpinner = document.getElementById('loading-spinner');
 
+    const link_box = document.getElementById('link_box');
+
+    const sourceElement = document.getElementById('video_src');
+    const videoElement = document.getElementById('video');
+    const download_button = document.getElementById('downloadBtn');
+
+
+
     searchButton.addEventListener('click', performSearch);
 
     function performSearch() {
@@ -14,8 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         user_code_input = code_input.value;
         userInput = searchInput.value;
         document.getElementById('video').style.display = 'none';
-        let sourceElement = document.getElementById('video_src');
-        let videoElement = document.getElementById('video');
+
         const url = `/api/attractions?keyword=${userInput}&code=${user_code_input}`;
 
         fetch(url)
@@ -26,9 +33,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 loadingSpinner.style.display = 'none';
 
                 // Process and display new data
-                document.getElementById('video').style.display = 'block';
+                videoElement.style.display = 'block';
+                link_box.style.display = 'flex';
 
                 sourceElement.src = data.data;
+                download_button.href = data.data;
+                // urlDisplay.textContent = data.data;
+
                 videoElement.load();
                 videoElement.play();
             })
