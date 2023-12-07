@@ -27,7 +27,7 @@ def index():
     return render_template("index.html")
     # return "index page!"
 
-@app.route('/api/attractions', methods=['GET'])
+@app.route('/api/shooting', methods=['POST'])
 async def get_attractions():
     ### code box
     # code = request.args.get('code', '')

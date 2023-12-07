@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
         userInput = searchInput.value;
         document.getElementById('video').style.display = 'none';
 
-        const url = `/api/attractions?keyword=${userInput}&code=${user_code_input}`;
+        // const url = `/api/attractions?keyword=${userInput}&code=${user_code_input}`;
+        const url = `/api/shooting?keyword=${userInput}`;
 
         fetch(url)
             .then(response => response.json())
