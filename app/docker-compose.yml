@@ -5,8 +5,8 @@ services:
     image: aivideo-compose/compose
     container_name: aivideo-compose-container
 
-    ports: 
-      - '3003:3003'
+    ports: # (HOST:CONTAINER) (webpage link:port inside container)
+      - '5000:3003'
 
     environment:
       # FLASK_ENV: development

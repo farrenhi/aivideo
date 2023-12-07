@@ -10,10 +10,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const videoElement = document.getElementById('video');
     const download_button = document.getElementById('downloadBtn');
 
-
+    const start_btn = document.getElementById('start_btn');
+    start_btn.addEventListener('click', go_to_main_page);
+    function go_to_main_page() {
+        document.getElementById('landing_page_box').style.display = 'none';
+        document.getElementById('welcome-banner').style.display = 'flex';
+    }
 
     searchButton.addEventListener('click', performSearch);
-
     function performSearch() {
         // Show the loading spinner
         // loadingSpinner.classList.remove('hidden');
