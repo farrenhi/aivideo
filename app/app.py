@@ -29,10 +29,11 @@ def index():
 
 @app.route('/api/attractions', methods=['GET'])
 async def get_attractions():
-    code = request.args.get('code', '')
-    if code != os.getenv('website_code'):
-        print("entered code:", code)
-        return jsonify("error code!")
+    ### code box
+    # code = request.args.get('code', '')
+    # if code != os.getenv('website_code'):
+    #     print("entered code:", code)
+    #     return jsonify("error code!")
     
     prompt = request.args.get('keyword', '')
     prompt = prompt + ' and explain between 75 to 100 words.'
