@@ -4,8 +4,8 @@ load_dotenv()  # take environment variables from .env.
 import mysql.connector.pooling
 
 db_config = {
-            # 'host': os.getenv('host'), 
-            'host': 'host.docker.internal', 
+            'host': os.getenv('host'), 
+            # 'host': 'host.docker.internal', # for docker run on local PC
             'port': os.getenv('port'),
             'user': os.getenv('user'), 
             

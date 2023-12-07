@@ -36,6 +36,19 @@
     cursor: pointer;
 }
 
+#start_btn {
+    display: inline-block;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    background-color: var(--secondary2);
+    color: var(--secondary4);
+    /* border: 1px solid #4CAF50; */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
 /* Add this to your CSS to style the loading spinner */
 #loading-spinner {
     display: none;
@@ -221,6 +234,7 @@ font-weight: bold;
     font-weight: 700;
 
     display: flex;
+    display: none;
 
     /* vertically center */
     align-items: center; 
@@ -280,7 +294,7 @@ font-weight: bold;
     background-color: transparent;
     border: none;
     padding: 15px; /* Add padding for spacing */
-    width: 350px; /* Width of the input box */
+    width: 400px; /* 350px if code box */
     /* box-shadow: 0px 0px 20px 0px #ABC;  */
     color: var(--secondary2);
 }
@@ -355,14 +369,36 @@ font-weight: bold;
     
 }
 
+
 .video_box {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 
     width: 1200px;
     height: 720px;
     /* background-color: darkolivegreen; */
+}
+
+.web_title {
+    color: white;
+    font-size: 28px;
+    font-size: 38px;
+}
+
+.landing_page {
+    color: white;
+    font-size: 28px;
+    margin-top: 30px;
+}
+
+.started {
+    margin-top: 30px;
+}
+
+.started_font {
+    font-size: 20px;
 }
 
 .main_attraction {

@@ -18,7 +18,7 @@
                     <!-- class="modal_input body_body_medium" -->
                     <div class="search_bar">
                         <input type="text" placeholder="A message about you video clip" class="search-input body_body_bold" id="search-input">
-                        <input type="password" id="code" placeholder="code" class="code_box body_body_bold" required>
+                        <!-- <input type="password" id="code" placeholder="code" class="code_box body_body_bold" required> -->
                         <div class="search-button">
                             <img src="/static/images/make_movie2.png" alt="Search Icon">
                         </div>
@@ -29,6 +29,14 @@
         </div>
 
         <div class="video_box">
+            <div class="web_title slogantitle_h1_bold">AutoVideo</div>
+            
+            <div class="landing_page body_body_bold"> We make videos for your search. </div>
+            
+            <div class="started">
+                <a id="start_btn" class="body_body_bold started_font"> Get started </a>
+            </div>
+
             <div id="loading-spinner" class="hidden"></div>
 
             <video class="video" id="video"  width="1280" height="720" controls>
@@ -36,6 +44,8 @@
                 Your browser does not support the video tag.
             </video>
         </div>
+        
+        
 
         <div class="link_box" id="link_box">
 
