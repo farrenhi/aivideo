@@ -54,6 +54,8 @@ async def get_attractions():
         # "data_backup": output_file_path,
     }
     
+    ### ### should modify this part to make it to pass code and data just like taipei one day trip
+    
     return jsonify(response)
 
 # def get_attractions():
