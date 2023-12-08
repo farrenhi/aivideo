@@ -3,24 +3,24 @@ import os
 load_dotenv()  # take environment variables from .env.
 import mysql.connector.pooling
 
-db_config = {
-            'host': os.getenv('host'), 
-            'host': 'host.docker.internal', # for docker run on local PC
-            'port': os.getenv('port'),
-            'user': os.getenv('user'), 
-            
-            'password': os.getenv('password'), 
-            'database': os.getenv('database'),
-            }
-
 # db_config = {
-#             'host': os.getenv('rds_host'), 
-#             'port': os.getenv('rds_port'), 
-#             'user': os.getenv('rds_user'), 
+#             'host': os.getenv('host'), 
+#             'host': 'host.docker.internal', # for docker run on local PC
+#             'port': os.getenv('port'),
+#             'user': os.getenv('user'), 
             
-#             'password': os.getenv('rds_password'), 
-#             'database': os.getenv('rds_database')
+#             'password': os.getenv('password'), 
+#             'database': os.getenv('database'),
 #             }
+
+db_config = {
+            'host': os.getenv('rds_host'), 
+            'port': os.getenv('rds_port'), 
+            'user': os.getenv('rds_user'), 
+            
+            'password': os.getenv('rds_password'), 
+            'database': os.getenv('rds_database')
+            }
 
 try:
     connection = mysql.connector.connect(**db_config)
