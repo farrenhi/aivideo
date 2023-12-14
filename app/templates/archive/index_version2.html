@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title> Home Page </title>
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css" />
+    
+</head>
+<body>
+    <div class="container">
+        <div class="item1" id="top"> One Message. One Video.</div>
+        <!-- <form class="item2" id="loginForm" onsubmit="return validateForm()" action="/signin" method="POST"> -->
+
+        <!-- Registration box (top box) -->
+        
+        <!-- Login system box (bottom box) -->
+        <form class="item2" id="loginForm" action="/signin" onsubmit="return validate_form_signin()" method="POST">
+            <div class="item-title">  </div>
+            <div><p> Send a message <input type="text" id="username_signin" name="username"/></p></div>
+            <div><button> Submit </button></div>
+        </form>
+    </div>
+
+    
+    <script>
+        function validate_form_signin() {
+            const usernameInput = document.getElementById('username_signin');
+            const username = usernameInput.value;
+            if (username === "") {
+                alert("Please send a message!");
+                return false; 
+            }
+            return true;
+        }
+
+        function redirectToSquaredPage(event) {
+            event.preventDefault(); // Prevent form submission (default behavior)
+
+            /*By calling event.preventDefault();, you instruct the browser to prevent the default form submission behavior. In other words, the form data will not be sent to the server, and the page will not reload. Instead, the JavaScript code inside the redirectToSquaredPage function will handle the form data and perform the necessary validations before redirecting the user to the Squared Number Page.
+
+In summary, event.preventDefault(); is used to stop the default behavior of an event, allowing you to handle the event in a custom way using JavaScript code. In this specific case, it's used to handle the form submission and perform client-side validation before redirection. */
+
+            // Get the entered number from the input field
+            const numberInput = document.getElementById('numberInput');
+            const number = numberInput.value;
+
+            // Check if the entered text is a positive number
+            // parseFloat: convert the input number to a floating-point number
+            if (isNaN(number) || parseFloat(number) <= 0 || number === "" || !Number.isInteger(parseFloat(number))) {
+                alert("Please enter a positive number.");
+                return; // Exit the function, no redirection will occur
+            }
+            // Redirect to the Squared Number Page with the entered number appended to the path
+            window.location.href = `/square/${number}`;
+
+            /*window.location is a built-in JavaScript object that provides access to information about the current URL and enables page navigation. The href property is one of the properties of window.location, allowing you to interact with the current URL and handle page redirections easily. */
+        }
+    </script>
+
+</body>    
+</html>

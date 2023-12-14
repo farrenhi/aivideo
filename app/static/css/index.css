@@ -1,0 +1,1469 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+
+/* Define a variable for a color */
+:root {
+    /* 1:70; 2:50; 3:20 */
+    --primary1: #448899;
+    --primary2: #66AABB;
+    --primary3: #AADDEE;
+
+    /* 1:70; 2:50; 3:20; 4:10 */
+    --secondary1: #666666;
+    --secondary2: #757575;
+    --secondary3: #E8E8E8;
+    --secondary4: #F8F8F8;
+}
+
+.link_box {
+    display: none;
+    justify-content: center;
+    margin-top: 10px;
+    height: 46px;
+}
+
+.video_link{
+    color: var(--secondary3);
+}
+#downloadBtn {
+    display: inline-block;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    background-color: var(--secondary2);
+    color: var(--secondary4);
+    /* border: 1px solid #4CAF50; */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#start_btn {
+    display: inline-block;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    background-color: var(--secondary2);
+    color: var(--secondary4);
+    /* border: 1px solid #4CAF50; */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* Add this to your CSS to style the loading spinner */
+#loading-spinner {
+    display: none;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+.video {
+    display: none;
+
+}
+
+.code_box {
+    width: 50px;
+    border: none;
+    border-left: 1px solid var(--secondary2);
+    color: var(--secondary2);
+}
+
+body {
+    margin: 0;
+    background-color: #111;
+    
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+}
+
+.headline_h2_bold {
+    font-family:"Noto Sans TC", sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 34px;
+}
+
+.dialogtitle_h3_bold {
+    font-family:"Noto Sans TC", sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+.slogantitle_h1_bold {
+    font-family: "Noto Sans TC", sans-serif;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 24px;
+}
+
+.body_body_bold {
+    /* Body - Bold 16(13.3) */
+    /* something looks like above on Figma */
+    font-family: "Noto Sans TC", sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 13.3px;
+}
+
+.body_body_medium {
+    /* Body - Med 16(13.3) */
+    font-family: "Noto Sans TC", sans-serif;
+    
+    /* medium wont work! */
+    font-weight: 500; 
+    font-size: 16px;
+    line-height: 13.3px;
+}
+
+.dialogtitle_h3_bold {
+font-family: "Noto Sans TC", sans-serif;
+font-size: 24px;
+line-height: 24px;
+font-weight: bold;
+}
+
+.content_content_regular {
+    font-family: "Noto Sans TC", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: normal;
+    color: var(--secondary1);
+}
+
+.button_btn_bold {
+    font-family: "Noto Sans TC", sans-serif;
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 16px;
+}
+
+.button_btn_regular {
+    font-family: "Noto Sans TC", sans-serif;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 16px;
+    color: #FFFFFF;
+}
+
+
+.nav_box {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    background-color: white;
+    border-bottom: 1px solid #E8E8E8;
+}
+
+.nav_bar {
+    display: flex; 
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+.left {
+    padding: 0px 10px;
+    color: var(--primary1);
+    /* background-color: gray; */
+    cursor: pointer;
+}
+
+.right-desktop-menu {
+    /* background-color: aquamarine; */
+    display:flex; 
+    justify-content:flex-end;
+    flex: auto; 
+    /* auto fill */
+    /* background-color: orange; */
+}
+
+.item1 {
+    /* margin-right:15px; */
+    padding: 10px;
+    color: var(--secondary1);
+    /* background-color: lightgreen; */
+    cursor: pointer;
+}
+
+.item2 {
+    /* margin-right:15px; */
+    /* background-color: lightgreen; */
+    padding: 10px;
+    color: var(--secondary1);
+    cursor: pointer;
+}
+
+.item_logout {
+    display: none;
+    padding: 10px;
+    color: var(--secondary1);
+    cursor: pointer;
+}
+
+/* .welcome {
+    display:flex; justify-content: center; align-items: center;
+    font-size: 40px;
+    font-weight: bold;
+    height: 250px;
+    background-color: lightblue;
+} */
+
+.welcome-banner {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    /* background-image: url('/static/images/taipei101.png');  */
+    /* Replace 'your-banner-image.png' with the actual path to your PNG image */
+    background-size: cover; /* Adjust the background size as needed */
+    background-repeat: no-repeat; /* Prevent image repetition */
+    background-position: top; /* Center the image horizontally and vertically */
+    color: #fff; /* Set text color to white or another suitable color for better visibility */
+    font-weight: 700;
+
+    /* display: flex; */
+    display: none;
+
+    /* vertically center */
+    align-items: center; 
+
+    /* horizontally center */
+    justify-content: center;
+}
+
+.slogan_flex {
+    max-width: 1200px;
+    width: 100%;
+    /* background-color: black; */
+    /* height: 310px; */
+
+    display: flex;
+    align-items: center;
+    /* justify-content: left; */
+    flex-direction: row;   
+}
+
+.slogan {
+    /* background-color: grey; */
+
+    display: flex; 
+    flex-direction: row;
+    padding: 5px;
+    font-family: "Noto Sans TC", sans-serif;
+    align-items: center;
+    margin: auto;
+}
+
+.welcome_text1 {
+    /* margin-bottom: 15px; */
+    color: var(--secondary4);
+    margin-right: 20px;
+}
+
+.welcome_text2 {
+    margin-bottom: 25px;
+    color: var(--secondary4);
+}
+
+
+/* input a new search bar input */
+/* Style for the search bar container */
+.search_bar {
+    display: flex;
+    background-color: #fff; /* Background color for the search bar */
+    border-radius: 5px;
+    height: 46px;
+    width: 460px; /* Total width of input box (400px) + button (60px) */
+}
+
+/* Style for the search input field */
+.search-input {
+    box-sizing: border-box;
+    background-color: transparent;
+    border: none;
+    padding: 15px; /* Add padding for spacing */
+    width: 400px; /* 350px if code box */
+    box-shadow: 0px 0px 20px 0px #ABC; 
+    color: var(--secondary2);
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+.search-button {
+    background-color: #448899;
+    color: red;
+    border: none;
+    width: 60px;
+    box-sizing: border-box;
+    padding: 8px 15px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.search-button {
+    background-color: var(--secondary2);
+    color: red;
+    border: none;
+    width: 60px;
+    box-sizing: border-box;
+    padding: 8px 15px; /* Apply padding to the button */
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: flex;
+    align-items: center; /* Center the image vertically */
+    justify-content: center; /* Center the image horizontally */
+    cursor: pointer; /* Change cursor to indicate the button is clickable */
+}
+
+.search-button img {
+    width: 100%; /* Make the image fill the button */
+    height: auto; /* Maintain aspect ratio */
+}
+
+
+
+
+
+
+
+/* for desktop monitor > 1280px  */
+
+
+/* two version!  */
+/*
+.desktop-menu{
+    text-align: center;
+    display: block;
+    /* background-color: blueviolet;
+} 
+*/
+
+.mobile-menu{
+    /* text-align: center; */
+    display: none;
+}
+
+.main {
+    /* background-color: grey; */
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    /* padding-top: 20px; */
+    /* padding-bottom: 40px;  */
+    font-family: "Noto Sans TC", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    
+}
+
+
+.video_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 1200px;
+    height: 720px;
+    /* background-color: darkolivegreen; */
+}
+
+.web_title {
+    color: white;
+    font-size: 28px;
+    font-size: 38px;
+}
+
+.landing_page {
+    color: white;
+    font-size: 28px;
+    margin-top: 30px;
+}
+
+.started {
+    margin-top: 30px;
+}
+
+.started_font {
+    font-size: 20px;
+}
+
+.main_attraction {
+    margin-top: 54px;
+    /* background-color: green; */
+    
+
+}
+
+.list_bar {
+    /* background-color: gray; */
+    /* padding: 13px 10px; */
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.list_bar_left_container {
+    /* background-color: orange; */
+    box-sizing: content-box;
+    width: 32px;
+    height: 32px;
+    padding: 9px 0px 9px 15px;
+    flex-shrink: 0;
+    cursor: pointer;
+  
+}
+
+.list_bar_left_container img {
+    /* source image is 64*64px */
+    width: 100%;
+    height: 100%;
+}
+
+
+.list_bar_container {
+    /* background-color: lightgreen; */
+    box-sizing: content-box;
+    width: 1086px;
+    /* flex-grow: 1; */
+    height: 24px;
+    padding: 13px 10px; 
+    overflow: hidden;
+    /* flex: auto; */
+    /* flex-shrink: 1; */
+    white-space: nowrap;
+}
+
+.list{
+    /* background-color: pink; */
+    display: flex;
+    /* flex-direction: row; */
+    transition: transform 0.3s ease-in-out;
+}
+
+.list div {
+    color: #666; 
+    padding: 5px 15px; 
+    /* border: 1px dashed black; */
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+
+
+
+.list_bar_right_container {
+    /* background-color: pink; */
+    box-sizing: content-box;
+    width: 32px;
+    height: 32px;
+    padding: 9px 15px 9px 0px;
+    flex-shrink: 0; 
+    cursor: pointer;
+}
+
+.list_bar_right_container img {
+    /* source image is 64*64px */
+    width: 100%;
+    height: 100%;
+}
+
+
+.part2_twelve {
+    display: flex; 
+    /* justify-content: space-between; */
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px 30px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.sight {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 1px solid var(--secondary-color-gray-20, #E8E8E8);
+    background: var(--White, #FFF);
+    box-sizing: content-box;
+    overflow: hidden;
+    height: 240px;
+    width: 265px;
+}
+
+.invisible-link {
+    text-decoration: none;
+    color: transparent; /* Make the link text color transparent */
+    display: block; /* Make the link a block element to cover the entire image */
+    width: 100%; /* Make the link take up the full width of the container */
+    height: 100%; /* Make the link take up the full height of the container */
+    position: absolute; /* Position the link over the image */
+    top: 0;
+    left: 0;
+}
+
+.img_box {
+    width: 270px;
+    height: 195px;
+    position: relative; /* Add position relative to create a context for absolute positioning */
+}
+
+
+.sight img {
+    width: 100%;
+    height: 195px;
+    object-fit: cover;
+    display: block;
+}
+
+.img_box .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px; /* Adjust padding as needed */
+    text-align: left;
+    z-index: 1; /* Ensure the overlay is above the image */
+
+    overflow: hidden;
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+    opacity: 0.6;
+    background: var(--additional-color-black, #000);
+    box-sizing: border-box;
+    height: 40px;
+    color: var(--additional-color-white, #FFF);
+}
+
+
+
+/* question about title and title_text. check display mode 
+also the height!
+*/
+
+.title_box {
+    /* outline: 1px dashed grey; */
+    display: flex; 
+    height: 45px;
+}
+
+.title_box_left {
+    /* background-color: pink; */
+    padding: 10px;
+    display: flex; 
+    align-items: center;
+    justify-content: left;
+    color: var(--secondary2)
+
+}
+
+.title_box_right {
+    /* background-color: orange; */
+    padding: 10px;
+    display: flex; 
+    align-items: center;
+    justify-content: right;
+    flex: auto;
+    color: var(--secondary2)
+}
+
+
+/* smallest desktop monitor 1280*/
+/* tablet */
+
+
+.footer {
+    background-color: #757575;
+    color: #fff;
+    padding: 40px 0;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    flex: 1;
+}
+
+
+
+/* attraction html part */
+.sight_box {
+    padding: 0 15px;
+    padding-bottom: 40px;
+    /* background-color: #448899; */
+    display: flex;
+    /* flex-direction: row; */
+    border-bottom: 1px solid #E8E8E8;
+}
+
+.sight_box_carousel {
+    /* background-color: pink; */
+    width: 540px;
+    /* height: 400px; */
+    aspect-ratio: 540 / 400;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block; /* Allows overlay to be positioned relative to the container */
+    
+}
+
+.sight_box_images {
+    display: flex;
+    flex-direction: row;
+    width: 540px;
+    overflow: hidden;
+}
+
+
+.sight_box_images img {
+    transition: opacity 0.5s ease-in-out; /* Add a transition for opacity */
+    opacity: 0; /* Initially hide all images */
+    position: absolute; /* Position images on top of each other */
+
+    width: 540px;
+    object-fit: cover;
+    aspect-ratio: 540/400;
+}
+
+.sight_box_image img:first-child {
+    opacity: 1; /* Show the first image initially */
+}
+
+
+.sight_box_image_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left-button,
+.right-button {
+
+    width: 36px; /* Adjust this according to your button image size */
+    height: 36px; /* Adjust this according to your button image size */
+    border: none;
+    cursor: pointer;
+    margin: 0 10px;
+    opacity: 0.75;
+}
+
+
+.overlay_dot {
+    /* background-color: lightcoral; */
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    /* padding-bottom: 10px; */
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: white;
+    margin: 0 6px;
+}
+
+.dot_active {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: black;
+    margin: 0 6px;
+    box-sizing: border-box;
+    border: 1px solid white;
+}
+
+
+
+.left-button {
+    background-position: left center;
+    background: url('/static/images/arrow_left2.png') no-repeat center center;
+    background-size: contain;
+}
+
+.right-button {
+    background-position: right center;
+    background: url('/static/images/arrow_right2.png') no-repeat center center;
+    background-size: contain;
+    
+}
+
+
+.sight_box_right{
+    /* background-color: lightblue; */
+    flex: 1;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.rightbox1 {
+    /* height: 33px; */
+    color: var(--secondary1);
+}
+
+.rightbox2 {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    color: var(--secondary1);
+}
+
+.bookingform {
+    background-color: var(--secondary3);
+    /* flex-grow: auto; */
+    border-radius: 5px; 
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.bookingform_head, .bookingform_text {
+    color: var(--secondary1);
+    line-height: normal;
+}
+
+.bookingform_button {
+    display: flex;
+}
+
+.bookingform_button_text {
+    margin-top: 10px;
+    /* margin-bottom: 40px; */
+    background-color: var(--primary1);
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.date_form {
+    padding: 5px 34px 5px 10px;
+    margin-left: 5px;
+    box-sizing: border-box;
+    width: 193px;
+}
+
+/* chrome and safari */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    /* opacity: 0; */
+}
+
+/* for firefox */
+input[type="date"] {
+    /* opacity: 0; */
+    /* appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none; */
+}
+
+/* input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+    margin: 0;
+} */
+
+input[type='date']::-webkit-calendar-picker-indicator {
+    /* padding-right: 50px; */
+    /* background-position: 95%;
+    background-image: url("/static/images/dateform.png");
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    border: 0px; */
+    /* appearance: none; */
+    /* background: transparent; */
+}
+
+
+
+
+.date_box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.time_box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* gap: 10px; */
+}
+
+
+input[type="radio"] {
+    -webkit-appearance: none; /* hide default style for certain browser */
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 50%; 
+    background-color: #FFFFFF; /* unchecked color */
+    cursor: pointer;
+}
+
+.radio-input {
+    width: 22px;
+    height: 22px;
+}
+
+.radio-input:checked {
+background-color: var(--primary1);
+border: 1px solid white; 
+}
+
+
+
+
+
+.time_box label{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 10px;
+    margin-right: 8px;
+}
+
+.info {
+    /* background-color: pink; */
+    margin-top: 40px;
+    padding: 10px 10px 80px 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.info_head {
+    margin-top: 20px;
+    height: 32px;
+    align-items: center;
+    display: flex;
+    text-align: justify;
+}
+
+.info_description {
+    text-align: justify;
+
+}
+
+
+.transport {
+    text-align: justify;
+}
+
+
+
+.modal {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    z-index: 11;
+    left: 50%;
+    top: 80px; /* Position 80 pixels from the top */
+    transform: translateX(-50%);
+    background-color: #fff;
+    width: 340px; 
+    box-shadow: 0px 4px 60px 0px #AAA; 
+    border-radius: 6px; 
+    overflow: hidden;
+}
+
+.decorator_bar {
+    width: 100%;
+    height: 10px;
+
+    background: linear-gradient(270deg, #378 0%, #6AB 100%);
+}
+
+
+
+.modal-content {
+    text-align: center;
+    padding: 15px;
+    /* background-color: grey; */
+}
+
+.dialogtitle {
+    margin-bottom: 15px;
+    color: var(--secondary1);
+}
+
+.modal_form {
+
+}
+
+.modal_input {
+    border-radius: 5px; 
+    border: 1px solid #ccc; 
+    height: 47px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 15px;
+    box-sizing: border-box;
+    color: var(--secondary2);
+}
+
+.modal_input::placeholder {
+    color: var(--secondary2);
+}
+
+
+.modal_button {
+    background-color: var(--primary1);
+    color: white;
+    width: 100%;
+    height: 47px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.link_signup {
+    margin-top: 10px;
+    height: 22px;
+    width: 100%;
+    color: var(--secondary2);
+    cursor: pointer;
+}
+
+.link_login {
+    margin-top: 10px;
+    height: 22px;
+    width: 100%;
+    color: var(--secondary2);
+    cursor: pointer;
+}
+
+
+
+.modal_error_box {
+    display: None;
+    color: red;
+}
+
+.close {
+    position: absolute;
+    right: 17px;
+    top: 17px;
+    cursor: pointer;
+    font-size: 30px;
+}
+
+.mask {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.25;
+}
+
+.main_booking {
+    margin-top: 54px;
+    /* background-color: green; */
+    width: 100%;
+
+}
+
+.headline {
+    color: var(--secondary1);
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin: 0 auto;
+    width: calc((1000 / 1200) * 100%);
+
+    /* background-color: lightcyan; */
+}
+
+.no_booking {
+    color: var(--secondary1);
+    display: none;
+    
+    height: 24px;
+    margin: 0 auto;
+    margin-top: 30px;
+    width: calc((1000 / 1200) * 100%);
+
+}
+
+.sight_book_info {
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 40px;
+
+    width: calc((980 / 1200) * 100%);
+    /* background-color: lightcoral; */
+    /* box-sizing: content-box; */
+
+}
+
+.sight_box_booking_carousel {
+    /* background-color: pink; */
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block; /* Allows overlay to be positioned relative to the container */
+    
+}
+.sight_box_booking_carousel img {
+    width: 250px;
+    aspect-ratio: 250 / 200;
+    object-fit: cover;
+}
+
+.booking_sight_box {
+    display: flex;
+}
+
+.contact_form_outer {
+    /* background-color: lightskyblue; */
+    padding: 40px 0;
+    border-top: 1px solid #E8E8E8;
+    border-bottom: 1px solid #E8E8E8;
+}
+
+.booking_sight_box_right {
+    flex: 1;
+    margin-left: 30px;
+    /* background-color: lightblue; */
+
+    /* padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+    padding-bottom: 40px; */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+}
+
+.booking_delete img {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+
+.booking_head {
+    color: var(--primary1);
+    padding: 5px 0;
+    margin-bottom: 5px;
+}
+
+.contact_title {
+    color: var(--secondary1);
+    padding: 4px 0;
+    margin-bottom: 5px;
+}
+
+.contact_warn {
+    margin-top: 15px;
+    color: var(--secondary1);
+}
+
+.contact_form {
+    /* background-color: lightseagreen; */
+    width: calc((980 / 1200) * 100%);
+    margin: 0 auto;
+    /* height: 100px; */
+    display: flex;
+    flex-direction: column;
+}
+
+/* .contact_input {
+    display: flex;
+    align-items: center;
+} */
+
+.card_info {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+
+.contact_input_box {
+    width: 180px;
+    height: 18px;
+    padding: 10px;
+    box-sizing: content-box;
+    border-radius: 5px; 
+    border: 1px solid #E8E8E8;
+    margin-left: 5px;
+    margin-top: 15px;
+}
+
+.card_input_box {
+    width: 180px;
+    height: 18px;
+    padding: 10px;
+    box-sizing: content-box;
+    border-radius: 5px; 
+    border: 1px solid #E8E8E8;
+    margin-left: 5px;
+}
+
+
+
+
+.payment {
+    margin: 40px auto;
+    /* height: 200px; */
+    width: calc((980 / 1200) * 100%);
+    /* background-color: lightcoral; */
+    box-sizing: content-box;
+}
+
+.confirm_box_outer {
+    /* background-color: lightskyblue; */
+    padding: 40px 0;
+    padding-bottom: 0px;
+    border-top: 1px solid #E8E8E8;
+}
+
+.confirm_box {
+    /* background-color: lightseagreen; */
+    width: calc((980 / 1200) * 100%);
+    margin: 0 auto;
+    /* height: 100px; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: flex-end; */
+    align-items: flex-end;
+}
+
+.confirm_box_price {
+    margin-bottom: 22px;
+}
+
+.confirm_box_button {
+}
+
+.confirm_box_button2 {
+    background-color: var(--primary1);
+    color: white;
+    height: 47px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 0px;
+    cursor: pointer;
+    margin-bottom: 22px;
+}
+
+@media (max-width: 1200px) {
+    .main {
+        width: 90%;
+    }
+
+    .nav_bar {
+        width: 90%;
+    }
+
+    .slogan_flex {
+        width: 90%;
+    }
+
+
+
+
+    /* .promotion{
+        width: calc(50% - 10px);
+    }
+    .promotion:last-child{
+        flex-grow: 1;
+        } */
+
+    
+    /* .title{
+        width: calc(25% - 15px);
+    } */
+}
+
+/* cell phone. smallet is 360px */
+@media (max-width: 990px) {
+    .nav_bar {
+        box-sizing: content-box;
+        height: 34px;
+        padding: 10px 0px;
+        display: flex;
+        width: 100%;
+        /* justify-content: space-between; */
+
+    }
+    
+    .left {
+        /* background-color: lightgray; */
+        display: flex;
+        align-items: center;
+        /* flex:auto;  */
+        /*, you are specifying that it should automatically grow or 
+        shrink as needed to fill the available space 
+        within the flex container. */
+        line-height: 34px;
+        font-weight: bold;
+        font-size: 30px;
+    }
+
+    /* two version!  */
+    .right-desktop-menu {
+        display: flex;
+        justify-content: right;
+        /* background-color: lightcoral; */
+        font-size: 16px;
+        box-sizing: border-box;
+        height: 34px;
+        width: 175px;
+
+    }
+    
+    /* .mobile-menu {    } */
+
+
+    .slogan_flex {
+        justify-content: center;
+    }
+
+    .slogan {
+        width: 340px;
+        font-weight: bold;
+        font-size: 27px;
+        line-height: 24px;
+        box-sizing: border-box;
+        padding: 10px;
+
+    }
+
+    .search-input {
+        width: 225px;
+    }
+    
+    .search_bar {
+        width: 285px;
+    }
+
+    .search-button {
+        width: 60px;
+    }
+
+    .part2_twelve {
+        box-sizing: content-box;
+        padding: 15px;
+
+        justify-content: center; /* Add this to center the items horizontally */
+        align-items: center; /* Add this to center the items vertically */
+    }
+
+
+    .main_attraction {
+        width: 100%;
+        padding-top: 0px;
+
+        /* give it a try */
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .main_booking {
+        width: 100%;
+
+        /* give it a try */
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding-left: 10px;
+        padding-right: 10px;
+        box-sizing: border-box;
+    }
+
+    .sight_book_info {
+        margin: 0px;
+        width: 100%;
+
+    }
+
+    .sight_box_booking_carousel {
+        display: flex;
+        justify-content: center;
+    }
+
+    .sight_box_booking_carousel img {
+        width: 100vw;
+        max-width: 500px;
+        aspect-ratio: 340 / 200;
+        border-radius: 5px;
+    }
+
+    .booking_sight_box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 30px;
+    }
+    
+    .booking_sight_box_right {
+        margin-left: 0;
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+    }
+
+    .booking_delete img {
+        top: auto;
+        bottom: 0;
+    }
+
+    .headline {
+        width: 100%;
+    }
+    
+    .no_booking {
+        width: 100%;
+    }
+
+    .contact_form {
+        width: 100%;
+        margin: 0;
+    }
+
+    .confirm_box {
+        width: 100%;
+        margin: 0;
+    }
+
+
+    
+    .payment {
+        width: 100%;
+        margin: 40px 0;
+        
+    }
+
+    .button_btn_bold {
+        line-height: normal;
+    }
+
+    .body_body_bold {
+        line-height: normal;
+    }
+
+    .body_body_medium {
+        line-height: normal;
+    }
+
+
+
+
+    .outer_carousel {
+        /* background-color: grey; */
+        display: flex;
+        justify-content: center;
+    }
+
+    .sight_box_carousel {
+        border-radius: 0;
+        width: 100vw;
+        object-fit: cover;
+        aspect-ratio: 4/3;
+    }
+
+    .sight_box_images {
+        
+    }
+
+    .sight_box_images img {
+        /* height: 400px; */ 
+        width: 100%;
+        object-fit: cover;
+      }
+
+    .sight_box_right {
+        margin-left: 0px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 20px;
+        padding-bottom: 40px;
+        
+    }
+
+    .bookingform {
+        padding-bottom: 15px;
+    }
+
+    .info {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .sight_box {
+        flex-direction: column;
+        padding: 0px;
+    }
+
+
+    .sight {
+        width: 320px;
+        height: 280px;
+    }
+
+    .img_box {
+        width: 320px;
+        height: 235px;
+    }
+
+    .sight img {
+        width: 100%;
+        height: 235px;
+    }
+
+
+
+    .text{
+        font-size: 30px;
+    }
+
+    .promotion{
+        width: 100%;
+    }
+
+    .title{
+        width: calc(100%);
+    }
+}
